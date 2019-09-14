@@ -1,0 +1,32 @@
+Object,Material,Tasks,P Cut,P Flip,P Hit,P Poke,P Rake,P Scoop
+,,,,,,,,
+Red_bowl_round,metal,"[hit, scoop]",0.9999994,0.0000145,0.0000128,4.32E-06,1.97E-05,0.9999993
+Game_card,paper,flip,0.99999547,0.00000966,0.00000809,3.00E-06,1.57E-05,0.9999075
+Green_lid,plastic,flip,0.2856735,0.9999771,0.68016785,0.012327459,0.99932325,0.97488564
+Red_square_bowl,plastic,"[hit, scoop]",0.99999917,1,1,0.9999999,1,0.99999774
+Wooden_cup,wood,scoop,0.99999917,1,1,1.00E+00,1,0.999997
+Drill_bit,plastic,poke,0.9999987,0.00000867,0.00000743,2.84E-06,1.52E-05,0.99999774
+Green_ladle,plastic,scoop,0.9999974,0.00000886,0.00000715,2.82E-06,1.50E-05,0.9999428
+Wooden_rake,wood,"[rake, poke]",0.9999994,1,1,1.00E+00,1,0.99999774
+Red_mug,metal,"[hit, scoop]",0.9999995,0.0000264,0.0000195,7.04E-06,2.35E-05,0.9999993
+Spoon,metal,"[scoop, cut]",1,1,1,1,1,0.99999976
+Bocca_marbled_pan,metal,"[hit, scoop]",1,1,1,1,1,0.99999976
+Wine_glass,plastic,scoop,0.92521775,0.0000197,0.0000111,4.67E-06,2.09E-05,0.95212114
+Pen,plastic,poke,0.9926219,0.0000246,0.0000139,9.35E-06,2.34E-05,0.9933488
+Tableknife,metal,"[poke, cut]",1,1,1,1,1,0.99999976
+Black_plate,plastic,"flip, scoop",0.40753117,0.0009660909,0.0002334822,0.02921508,0.0001101002,0.75746006
+Black_fork,plastic,"[cut, poke, rake]",0.11147346,0.002197551,0.0006596853,0.2429233,0.000216668,0.3660987
+Metal_rake,metal,rake,0.9992994,0.00000915,0.00000748,2.90E-06,1.52E-05,0.76940507
+Trowel_spatula,metal,"[cut, flip]",1,1,1,1,1,0.99999976
+Large_spork,wood,"[rake, poke, flip]",0.9999994,1,1,1,1,0.9999981
+Comb,plastic,rake,0.9999988,0.00000804,0.00000652,2.53E-06,1.46E-05,0.9999975
+Turquoise_bottle,metal,hit,0.9999995,0.0000109,0.00000894,4.84E-06,4.46E-05,0.9999981
+Wooden_box,wood,hit,0.9999994,1,1,1,1,0.9999981
+Green_spatula,metal,"[cut, flip]",0.9545148,0.00000888,0.00000727,2.82E-06,1.48E-05,0.30099654
+Wooden_spatula,wood,flip,0.99999917,1,1,1,1,0.99999714
+Small_metal_pan,metal,"[hit, scoop]",1,1,1,1,1,0.99999976
+Yellow_bowl,plastic,scoop,0.9999987,0.00000798,0.0000065,2.59E-06,1.41E-05,0.9999975
+Blue_lid,plastic,flip,0.99999964,0.00000801,0.00000663,2.39E-06,1.76E-05,0.91439503
+Red_rake,plastic,rake,0.9999989,0.00000817,0.00000681,2.67E-06,1.44E-05,0.99999774
+Scissors,metal,"[cut, poke]",1,1,1,1,1,0.99999976
+Blue_tin,metal ,hit,0.99999917,0.00000771,0.00000642,2.60E-06,1.33E-05,0.9999982
