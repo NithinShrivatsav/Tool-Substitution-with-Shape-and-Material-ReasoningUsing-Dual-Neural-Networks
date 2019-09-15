@@ -1,3 +1,8 @@
+'''
+Author: Nithin Shrivatsav Srikanth, Lakshmi Nair
+Acknowledgment: Derived some functions from Zackory Erickson's work
+Description: This script is used to train the dual neural network for tool substitution with material properties.
+'''
 import os, sys
 import numpy as np
 import cPickle as pickle
@@ -240,7 +245,7 @@ X = scaler.transform(X)
 input_shape = X.shape[1:]
 
 ## Save the StandardScaler object for use during testing
-scaler_filename = 'scaler_materials_big_new_poke.save'
+scaler_filename = '/home/nithin/Desktop/Tool-Substitution-with-Shape-and-Material-ReasoningUsing-Dual-Neural-Networks/models/material/Scalar_wts/scaler_materials_big_new_poke.save'
 joblib.dump(scaler, scaler_filename)
 
 ## Create the Training and Testing Pairs
@@ -258,10 +263,6 @@ x = Dense(284,  activation='tanh', kernel_regularizer=regularizers.l2(0.001),nam
 x = Dropout(0.5)(x)
 x = Dense(128,  activation='tanh', kernel_regularizer=regularizers.l2(0.001), name='Features3')(x)
 x = Dropout(0.5)(x)
-x = Dense(128,  activation='tanh', kernel_regularizer=regularizers.l2(0.001), name='Features4')(x)
-x = Dropout(0.5)(x)
-x = Dense(64,  activation='tanh', kernel_regularizer=regularizers.l2(0.001), name='Features5')(x)
-x = Dropout(0.5)(x)
 
 ## Base Network
 base_network = Model(inputs=input, outputs=x)
@@ -276,24 +277,18 @@ tool_encoding_2 = base_network(input_features_2)
 
 ## Similarity Layer
 l1_distance_layer = Lambda(lambda tensors: K.abs(tensors[0]-tensors[1]), name='L1_Distance')
-# l1_distance_layer = Lambda(lambda tensors: K.square(tensors[0]-tensors[1]), name='L2_Distance')
 l1_distance = l1_distance_layer([tool_encoding_1, tool_encoding_2])
 
 ## Distance Fusion and Final Prediction Layer
-# fusion_layer = Dense(64, activation='tanh', kernel_regularizer=regularizers.l2(0.001), name='Fusion')(l1_distance)
-# pooling_layer = AveragePooling1D()(l1_distance)
-# flatten = Flatten()(pooling_layer)
 prediction = Dense(1, activation='sigmoid', name='Final_Layer')(l1_distance)
 model = Model(inputs=[input_features_1, input_features_2], outputs=prediction)
 
 ## Compile and Fit the model
-# model.compile(loss='binary_crossentropy', optimizer=optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0), metrics=['binary_accuracy'])
-model.compile(loss='binary_crossentropy', optimizer=optimizers.Adam(lr=0.00005), metrics=['binary_accuracy'])
-# model.compile(loss='binary_crossentropy', optimizer=optimizers.SGD(lr=0.001, momentum=0.01, decay=0.0, nesterov=True), metrics=['binary_accuracy'])
+model.compile(loss='binary_crossentropy', optimizer=optimizers.Adam(lr=0.001), metrics=['binary_accuracy'])
 mc = keras.callbacks.ModelCheckpoint('poke_weights{epoch:08d}.h5', save_weights_only=True, period=10)
-model.fit([x_train[:,0], x_train[:,1]], y_train, validation_split=0.2, epochs=200, batch_size=50, verbose=1, callbacks=[mc])
-model.save_weights('material_prop_weights_big_new_poke.h5')
-# model.load_weights('poke_weights00000010.h5')
+model.fit([x_train[:,0], x_train[:,1]], y_train, validation_split=0.2, epochs=10, batch_size=50, verbose=1, callbacks=[mc])
+model.save_weights('/home/nithin/Desktop/Tool-Substitution-with-Shape-and-Material-ReasoningUsing-Dual-Neural-Networks/models/material/Model/material_prop_weights_big_new_poke.h5')
+
 ## Create Embeddings
 embedding_data = np.copy(X)
 embedding_data_label = np.copy(Y)
@@ -301,6 +296,6 @@ embedding_data_indices = [i for i,x in enumerate(embedding_data_label) if x == 1
 embedding_inputs_temp = [x for i,x in enumerate(embedding_data) if i in embedding_data_indices]
 embedding_inputs = np.array(embedding_inputs_temp)
 embedding_outputs = base_network.predict(embedding_inputs)
-np.save('poke_embeddings.npy', embedding_outputs)
+np.save('/home/nithin/Desktop/Tool-Substitution-with-Shape-and-Material-ReasoningUsing-Dual-Neural-Networks/models/material/Embeddings/poke_embeddings.npy', embedding_outputs)
 
 
